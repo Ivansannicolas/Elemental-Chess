@@ -18,6 +18,7 @@ export default function Board() {
     [{ }, { }, { }],
     [{ }, { name: 'air' }, { }],
   ]);
+
   return (
     <div className="board">
       <div className="table">
@@ -31,6 +32,7 @@ export default function Board() {
                   tile={board[rowIndex][tileIndex]}
                   clickedTile={clickedTile}
                   setClickedTile={setClickedTile}
+                  toMove={toMove}
                   setToMove={setToMove}
                 />
               );
@@ -42,6 +44,7 @@ export default function Board() {
                 tile={{ x: tileIndex, y: rowIndex }}
                 toMove={toMove}
                 setToMove={setToMove}
+                characterPosition={characterPosition}
                 setCharacterPosition={setCharacterPosition}
               />
             );

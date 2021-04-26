@@ -7,10 +7,16 @@ import Proptypes from 'prop-types';
 import './TileStyles.css';
 
 export default function Tile({
-  board, setBoard, tile, toMove, setToMove, setCharacterPosition,
+  board, setBoard, tile, toMove, setToMove, characterPosition, setCharacterPosition,
 }) {
+  let isAtReach = false;
+
+  if (toMove && (tile.x === characterPosition.x && tile.y === characterPosition.y - 1)) {
+    isAtReach = true;
+  }
+
   function moveToTile() {
-    if (toMove) {
+    if (toMove && (tile.x === characterPosition.x && tile.y === characterPosition.y - 1)) {
       const newBoard = board.map((row, rowIndex) => {
         const newRow = row.map((actualTile, actualTileIndex) => {
           if (rowIndex === tile.y && actualTileIndex === tile.x) {
@@ -28,7 +34,7 @@ export default function Tile({
 
   return (
     <div
-      className={toMove ? 'tile green' : 'tile'}
+      className={isAtReach ? 'tile green' : 'tile'}
       onClick={() => moveToTile()}
     />
   );

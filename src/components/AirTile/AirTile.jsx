@@ -8,12 +8,20 @@ import Proptypes from 'prop-types';
 import './AirTileStyles.css';
 
 export default function AirTile({
-  board, setBoard, setClickedTile, setToMove,
+  board, setBoard, setClickedTile, toMove, setToMove,
 }) {
+  function handleToMove() {
+    if (toMove) {
+      setToMove(false);
+    } else {
+      setToMove(true);
+    }
+  }
+
   return (
     <div
       className="airTile"
-      onClick={() => setToMove(true)}
+      onClick={() => handleToMove()}
     >
       Air
     </div>
