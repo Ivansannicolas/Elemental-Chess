@@ -1,26 +1,52 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable max-len */
-import React from 'react';
-import './TableStyles.css';
+import React, { useEffect, useState } from 'react';
+import AirTile from '../AirTile/AirTile';
+import Tile from '../Tile/Tile';
+import './BoardStyles.css';
+
+//  Qué debe llevar una casilla?
+//  1. Si está ocupada o no,
+//  2. Sus coordenadas ?
 
 export default function Board() {
-  const casillas = [1, 2, 3, 4, 5, 6, 7, 8];
+  const [clickedTile, setClickedTile] = useState(null);
+  const [characterPosition, setCharacterPosition] = useState({ x: 1, y: 2 });
+  const [toMove, setToMove] = useState(false);
+  const [board, setBoard] = useState([
+    [{ }, { }, { }],
+    [{ }, { }, { }],
+    [{ }, { name: 'air' }, { }],
+  ]);
   return (
-    <div style={{
-      width: '100%', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center',
-    }}
-    >
+    <div className="board">
       <div className="table">
-        <div style={{ display: 'flex' }}>
-          {casillas.map((casilla, index) => (
-            <div
-              className="tile"
-              style={{ color: index % 2 === 0 ? 'white' : 'black', backgroundColor: index % 2 === 0 ? 'grey' : 'white' }}
-            >
-              X
-            </div>
-          ))}
-        </div>
+        {board.map((row, rowIndex) => (
+          row.map((tile, tileIndex) => {
+            if (tile.name === 'air') {
+              return (
+                <AirTile
+                  board={board}
+                  setBoard={setBoard}
+                  tile={board[rowIndex][tileIndex]}
+                  clickedTile={clickedTile}
+                  setClickedTile={setClickedTile}
+                  setToMove={setToMove}
+                />
+              );
+            }
+            return (
+              <Tile
+                board={board}
+                setBoard={setBoard}
+                tile={{ x: tileIndex, y: rowIndex }}
+                toMove={toMove}
+                setToMove={setToMove}
+                setCharacterPosition={setCharacterPosition}
+              />
+            );
+          })
+        ))}
       </div>
     </div>
   );
