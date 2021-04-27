@@ -1,6 +1,6 @@
 # Welcome to Elemental Chess!
 
-##Acutal features
+## Acutal features
 
 • Creation of a custom board
 • Creation of Air character
