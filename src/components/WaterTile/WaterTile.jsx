@@ -4,32 +4,34 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import Proptypes from 'prop-types';
-import './AirTileStyles.css';
+import './WaterTileStyles.css';
 
-export default function AirTile({
+export default function WaterTile({
   tile, movingCharacter, setMovingCharacter, setCharacterPosition,
 }) {
+  const airMove = { x: 0, y: 2 };
+
   function handleToMove() {
     setCharacterPosition({ x: tile.x, y: tile.y });
 
-    if (movingCharacter === 'air' || (movingCharacter.length && movingCharacter !== 'air')) {
+    if (movingCharacter === 'water' || (movingCharacter.length && movingCharacter !== 'water')) {
       setMovingCharacter('');
     } else {
-      setMovingCharacter('air');
+      setMovingCharacter('water');
     }
   }
 
   return (
     <div
-      className="airTile"
+      className="waterTile"
       onClick={() => handleToMove()}
     >
-      Air
+      Water
     </div>
   );
 }
 
-AirTile.propTypes = {
+WaterTile.propTypes = {
   tile: Proptypes.shape({
     x: Proptypes.number.isRequired,
     y: Proptypes.number.isRequired,

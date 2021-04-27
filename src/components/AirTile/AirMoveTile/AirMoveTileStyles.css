@@ -1,0 +1,25 @@
+.tile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90px;
+  height: 80px;
+  border: 1px solid black;
+}
+
+
+.tile:hover{
+  background-color: lightgray;
+}
+
+.red {
+  background-color: red;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.green {
+  background-color: lightgreen;
+}
