@@ -1,13 +1,13 @@
-.airTile {
+.earthTile {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 90px;
   height: 80px;
   border: 1px solid black;
-  background-color: rgb(180, 205, 233);
+  background-color: rgb(102, 63, 40);
 }
 
-.airTile:hover{
-  background-color: rgb(66, 111, 112);
+.earthTile:hover{
+  background-color: rgb(75, 46, 29);
 }

@@ -5,9 +5,9 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import Proptypes from 'prop-types';
-import './WaterMoveTileStyles.css';
+import './EarthMoveTileStyles.css';
 
-export default function WaterMoveTile({
+export default function EarthMoveTile({
   board, setBoard, tile, setMovingCharacter, characterPosition, setCharacterPosition,
 }) {
   let isAtReach = false;
@@ -21,9 +21,9 @@ export default function WaterMoveTile({
       const newBoard = board.map((row, rowIndex) => {
         const newRow = row.map((actualTile, actualTileIndex) => {
           if (rowIndex === tile.y && actualTileIndex === tile.x) {
-            return ({ name: 'water' });
+            return ({ name: 'earth' });
           }
-          if (board[rowIndex][actualTileIndex].name !== 'water') {
+          if (board[rowIndex][actualTileIndex].name !== 'earth') {
             return board[rowIndex][actualTileIndex];
           }
           return ({});
@@ -44,10 +44,8 @@ export default function WaterMoveTile({
   );
 }
 
-WaterMoveTile.propTypes = {
-  board: Proptypes.arrayOf(Proptypes.arrayOf(Proptypes.shape({
-    background: 'red',
-  }))).isRequired,
+EarthMoveTile.propTypes = {
+  board: Proptypes.arrayOf(Proptypes.arrayOf(Proptypes.shape({}))).isRequired,
   tile: Proptypes.shape({
     character: { name: '' },
     onClick: () => {},
