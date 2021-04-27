@@ -5,7 +5,9 @@
 
 
 ● Creation of a custom board
+
 ● Creation of Air character
+
 ● Moves the air character
 ● Creation of Water character
 ● Movement of characters respecting other caracters
