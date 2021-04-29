@@ -46,6 +46,3 @@ AirMoveTile.propTypes = {
     ]).isRequired,
   }).isRequired,
 };
-
-AirMoveTile.defaultProps = {
-};

@@ -5,15 +5,15 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import Proptypes from 'prop-types';
-import './WaterMoveTileStyles.css';
+import './LightningMoveTileStyles.css';
 
-export default function WaterMoveTile({
+export default function LightningMoveTile({
   tile, moveToTile, tileSize, characterPosition,
 }) {
   let isAtReach = false;
 
-  if ((Math.abs(tile.x - characterPosition.x) === 2 && Math.abs(tile.y - characterPosition.y) === 1)
-  || (Math.abs(tile.y - characterPosition.y) === 2 && Math.abs(tile.x - characterPosition.x) === 1)
+  if ((Math.abs(tile.x - characterPosition.x) === 1 && Math.abs(tile.y - characterPosition.y) === 1)
+  || (Math.abs(tile.x - characterPosition.x) === 2 && Math.abs(tile.y - characterPosition.y) === 2)
   ) {
     isAtReach = true;
   }
@@ -27,7 +27,7 @@ export default function WaterMoveTile({
   );
 }
 
-WaterMoveTile.propTypes = {
+LightningMoveTile.propTypes = {
   tile: Proptypes.shape({
     character: { name: '' },
     onClick: () => {},

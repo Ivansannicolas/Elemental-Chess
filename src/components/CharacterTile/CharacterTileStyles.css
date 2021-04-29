@@ -37,3 +37,11 @@
 .water:hover{
   background-color: rgb(4, 101, 190);
 }
+
+.lightning{
+  background-color: rgb(67, 6, 235);
+}
+
+.lightning:hover{
+  background-color: rgb(54, 7, 184);
+}
