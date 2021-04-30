@@ -14,26 +14,27 @@ import './BoardStyles.css';
 export default function Board() {
   const [movingCharacter, setMovingCharacter] = useState({ name: '', team: 0 });
   const [movingTeam, setMovingTeam] = useState(1);
+  const [charactersMoved, setCharactersMoved] = useState(0);
   const [characterPosition, setCharacterPosition] = useState({ x: 1, y: 5, team: 0 });
 
   const tileSize = { width: '70px', height: '65px' };
-  const airName = 'air';
-  const fireName = 'fire';
-  const waterName = 'water';
-  const earthName = 'earth';
-  const lightningName = 'lightning';
+  const airCharacter = { name: 'air', health: 3 };
+  const fireCharacter = { name: 'fire', health: 3 };
+  const waterCharacter = { name: 'water', health: 3 };
+  const earthCharacter = { name: 'earth', health: 3 };
+  const lightningCharacter = { name: 'lightning', health: 3 };
 
   const [board, setBoard] = useState([
-    [{ }, { }, { }, { }, { name: lightningName, team: 2 }, { name: waterName, team: 2 }, { }, { }, { }, { }, { }, { }],
-    [{ }, { }, { }, { }, { name: fireName, team: 2 }, { name: earthName, team: 2 }, { name: airName, team: 2 }, { }, { }, { }, { }, { }],
+    [{ }, { }, { }, { }, { ...lightningCharacter, team: 2 }, { ...waterCharacter, team: 2 }, { }, { }, { }, { }, { }, { }],
+    [{ }, { }, { }, { }, { ...fireCharacter, team: 2 }, { ...earthCharacter, team: 2 }, { ...airCharacter, team: 2 }, { }, { }, { }, { }, { }],
     [{ }, { }, { }, { }, { }, { }, { }, { }, { }, { }, { }, { }],
     [{ }, { }, { }, { }, { }, { }, { }, { }, { }, { }, { }, { }],
     [{ }, { }, { }, { }, { }, { }, { }, { }, { }, { }, { }, { }],
     [{ }, { }, { }, { }, { }, { }, { }, { }, { }, { }, { }, { }],
     [{ }, { }, { }, { }, { }, { }, { }, { }, { }, { }, { }, { }],
     [{ }, { }, { }, { }, { }, { }, { }, { }, { }, { }, { }, { }],
-    [{ }, { }, { }, { }, { name: airName, team: 1 }, { name: earthName, team: 1 }, { name: fireName, team: 1 }, { }, { }, { }, { }, { }],
-    [{ }, { }, { }, { }, { }, { name: waterName, team: 1 }, { name: lightningName, team: 1 }, { }, { }, { }, { }, { }],
+    [{ }, { }, { }, { }, { }, { ...fireCharacter, team: 1 }, { ...earthCharacter, team: 1 }, { ...airCharacter, team: 1 }, { }, { }, { }, { }],
+    [{ }, { }, { }, { }, { }, { ...lightningCharacter, team: 1 }, { ...waterCharacter, team: 1 }, { }, { }, { }, { }, { }],
   ]);
 
   function moveToTile(isAtReach, tile) {
@@ -41,7 +42,7 @@ export default function Board() {
       const newBoard = board.map((row, rowIndex) => {
         const newRow = row.map((actualTile, actualTileIndex) => {
           if ((rowIndex === tile.y && actualTileIndex === tile.x)) {
-            return ({ name: movingCharacter.name, team: movingCharacter.team, hasMove: true });
+            return ({ ...movingCharacter, hasMove: true });
           }
           if (rowIndex === characterPosition.y && actualTileIndex === characterPosition.x) {
             return ({});
@@ -56,6 +57,7 @@ export default function Board() {
       setBoard(newBoard);
       setMovingCharacter({ name: '', team: 0 });
       setCharacterPosition({ x: tile.x, y: tile.y });
+      setCharactersMoved(charactersMoved + 1);
     }
   }
 
@@ -76,6 +78,7 @@ export default function Board() {
     } else if (boardObject.movingTeam === 2) {
       boardObject.setMovingTeam(1);
     }
+    boardObject.setCharactersMoved(0);
   }
 
   return (
@@ -86,9 +89,7 @@ export default function Board() {
             if (tile.name && tile.team) {
               return (
                 <CharacterTile
-                  tile={{
-                    x: tileIndex, y: rowIndex, team: tile.team, name: tile.name, hasMove: tile.hasMove,
-                  }}
+                  tile={{ ...tile, x: tileIndex, y: rowIndex }}
                   tileSize={tileSize}
                   movingCharacter={movingCharacter}
                   movingTeam={movingTeam}
@@ -97,7 +98,7 @@ export default function Board() {
                 />
               );
             }
-            if (movingCharacter.name === airName) {
+            if (movingCharacter.name === airCharacter.name) {
               return (
                 <AirMoveTile
                   board={board}
@@ -112,7 +113,7 @@ export default function Board() {
                 />
               );
             }
-            if (movingCharacter.name === waterName) {
+            if (movingCharacter.name === waterCharacter.name) {
               return (
                 <WaterMoveTile
                   board={board}
@@ -126,7 +127,7 @@ export default function Board() {
                 />
               );
             }
-            if (movingCharacter.name === fireName) {
+            if (movingCharacter.name === fireCharacter.name) {
               return (
                 <FireMoveTile
                   board={board}
@@ -140,7 +141,7 @@ export default function Board() {
                 />
               );
             }
-            if (movingCharacter.name === earthName) {
+            if (movingCharacter.name === earthCharacter.name) {
               return (
                 <EarthMoveTile
                   board={board}
@@ -154,7 +155,7 @@ export default function Board() {
                 />
               );
             }
-            if (movingCharacter.name === lightningName) {
+            if (movingCharacter.name === lightningCharacter.name) {
               return (
                 <LightningMoveTile
                   board={board}
@@ -174,9 +175,15 @@ export default function Board() {
           })
         ))}
       </div>
-      <TurnButton onClick={() => resetTurns({
-        board, setBoard, movingTeam, setMovingTeam,
-      })}
+      <TurnButton
+        charactersMoved={charactersMoved}
+        onClick={() => resetTurns({
+          board,
+          setBoard,
+          movingTeam,
+          setMovingTeam,
+          setCharactersMoved,
+        })}
       />
     </div>
   );

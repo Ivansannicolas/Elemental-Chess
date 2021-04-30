@@ -1,12 +1,13 @@
 import React from 'react';
 import Proptypes from 'prop-types';
+import './TurnButtonStyles.css';
 
-export default function TurnButton({ onClick }) {
+export default function TurnButton({ onClick, charactersMoved }) {
   return (
     <button
       type="button"
-      style={{ padding: '10px', marginLeft: '30px' }}
       onClick={() => onClick()}
+      className={charactersMoved === 5 ? 'endTurn' : 'button'}
     >
       Fin del turno
     </button>
@@ -15,4 +16,5 @@ export default function TurnButton({ onClick }) {
 
 TurnButton.propTypes = {
   onClick: Proptypes.func.isRequired,
+  charactersMoved: Proptypes.number.isRequired,
 };

@@ -1,0 +1,11 @@
+.button {
+  height: 50px;
+  width: 130px;
+  background-color: rgb(206, 206, 206);
+}
+
+.endTurn {
+  background-color: chartreuse;
+  height: 50px;
+  width: 130px;
+}

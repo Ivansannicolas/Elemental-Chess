@@ -11,7 +11,7 @@ export default function Tile({ tileSize }) {
   return (
     <div
       className="tile"
-      style={{ width: tileSize.width, height: tileSize.height }}
+      style={{ width: tileSize.width, height: tileSize.height, border: '2px solid black' }}
     />
   );
 }

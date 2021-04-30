@@ -9,11 +9,10 @@ import './CharacterTileStyles.css';
 export default function CharacterTile({
   tile, movingCharacter, setMovingCharacter, movingTeam, setCharacterPosition, tileSize,
 }) {
-  const { name, hasMove } = tile;
+  const { name, hasMove, health } = tile;
   const className = `tile ${name}`;
 
   function handleToMove() {
-    console.log('tile', tile);
     if (!tile.hasMove && movingTeam === tile.team) {
       const newPosition = { x: tile.x, y: tile.y, team: tile.team };
       setCharacterPosition(newPosition);
@@ -21,7 +20,7 @@ export default function CharacterTile({
       if (movingCharacter.name === name || (movingCharacter.name?.length && movingCharacter.name !== name)) {
         setMovingCharacter({ name: '', team: 0 });
       } else {
-        setMovingCharacter({ name, team: tile.team });
+        setMovingCharacter({ ...tile });
       }
     }
   }
@@ -29,10 +28,16 @@ export default function CharacterTile({
   return (
     <div
       className={className}
-      style={{ width: tileSize.width, height: tileSize.height }}
+      style={{
+        width: tileSize.width,
+        height: tileSize.height,
+        border: movingTeam === tile.team ? '2px solid lightgreen' : ' 2px solid black',
+        color: 'whitesmoke',
+        textAlign: 'center',
+      }}
       onClick={() => handleToMove()}
     >
-      {name}
+      {`${name}: ${health}`}
     </div>
   );
 }
@@ -43,7 +48,8 @@ CharacterTile.propTypes = {
     y: Proptypes.number.isRequired,
     name: Proptypes.string.isRequired,
     team: Proptypes.number.isRequired,
-    hasMove: Proptypes.number.isRequired,
+    hasMove: Proptypes.bool.isRequired,
+    health: Proptypes.number.isRequired,
   }).isRequired,
   tileSize: Proptypes.shape({
     width: Proptypes.oneOfType([
