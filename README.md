@@ -19,3 +19,18 @@
 ● Creation of Fire character
 
 ● Creation of Earth character
+
+● Division of two teams
+
+● Each tile moves 1 time per turn
+
+● Turn system created
+
+● Ilumination of final turn button when there are no more characters to move
+
+● Illumination of moving team's characters
+
+
+
+
+
