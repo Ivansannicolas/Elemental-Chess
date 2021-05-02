@@ -7,8 +7,24 @@ import React, { useState } from 'react';
 import Proptypes from 'prop-types';
 import './TileStyles.css';
 
-export default function Tile() {
+export default function Tile({ tileSize }) {
   return (
-    <div className="tile" />
+    <div
+      className="tile"
+      style={{ width: tileSize.width, height: tileSize.height, border: '2px solid black' }}
+    />
   );
 }
+
+Tile.propTypes = {
+  tileSize: Proptypes.shape({
+    width: Proptypes.oneOfType([
+      Proptypes.string,
+      Proptypes.number,
+    ]).isRequired,
+    height: Proptypes.oneOfType([
+      Proptypes.string,
+      Proptypes.number,
+    ]).isRequired,
+  }).isRequired,
+};

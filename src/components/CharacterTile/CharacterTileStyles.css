@@ -1,0 +1,49 @@
+.tile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  background-color: white;
+  color: 'whitesmoke';
+  text-align: 'center';
+}
+
+.air {
+  background-color: rgb(180, 205, 233);
+}
+
+.air:hover {
+  background-color: rgb(66, 111, 112);
+}
+
+.earth {
+  background-color: rgb(102, 63, 40);
+}
+
+.earth:hover{
+  background-color: rgb(75, 46, 29);
+}
+
+.fire {
+  background-color: rgb(223, 1, 1);
+}
+
+.fire:hover{
+  background-color: rgb(172, 1, 1);
+}
+
+.water {
+  background-color: rgb(6, 124, 235);
+}
+
+.water:hover {
+  background-color: rgb(4, 101, 190);
+}
+
+.lightning {
+  background-color: rgb(67, 6, 235);
+}
+
+.lightning:hover {
+  background-color: rgb(54, 7, 184);
+}
