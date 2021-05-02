@@ -1,0 +1,14 @@
+.tile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.tile:hover{
+  background-color: lightgray;
+}
+
+.green {
+  background-color: lightgreen;
+}

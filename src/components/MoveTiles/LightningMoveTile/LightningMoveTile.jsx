@@ -21,7 +21,7 @@ export default function LightningMoveTile({
   return (
     <div
       className={isAtReach ? 'tile green' : 'tile'}
-      style={{ width: tileSize.width, height: tileSize.height }}
+      style={{ width: tileSize.width, height: tileSize.height, border: '2px solid black' }}
       onClick={() => moveToTile(isAtReach, tile)}
     />
   );

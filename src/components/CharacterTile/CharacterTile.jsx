@@ -32,8 +32,6 @@ export default function CharacterTile({
         width: tileSize.width,
         height: tileSize.height,
         border: movingTeam === tile.team ? '2px solid lightgreen' : ' 2px solid black',
-        color: 'whitesmoke',
-        textAlign: 'center',
       }}
       onClick={() => handleToMove()}
     >
